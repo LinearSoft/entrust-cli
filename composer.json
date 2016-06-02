@@ -18,9 +18,6 @@
     "illuminate/database": "~5.2",
     "illuminate/support": "~5.2"
   },
-  "require-dev": {
-
-  },
   "autoload": {
     "psr-4": {
       "LinearSoft\\EntrustCli\\": "src/"

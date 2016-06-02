@@ -47,16 +47,16 @@ class RoleInfo extends BaseCommand
         /** @var Role $role */
         $role = $this->loadRole($name);
         if($role == null) return;
-        
+
         $this->table(['Name','Display Name','Description','Id'],[[
             $role->{Role::PROPERTY_NAME},$role->{Role::PROPERTY_DISPLAY},$role->{Role::PROPERTY_DESC},$role->{Role::PROPERTY_KEY},
         ]]);
-        
-        $perms = $role->perms()->get(Permission::PROPERTY_NAME)->toArray();
+
+        $perms = $role->perms()->get([Permission::PROPERTY_NAME])->toArray();
         if(empty($perms)) $list = '<none>';
         else $list = $this->toArrayImplode(', ',Permission::PROPERTY_NAME,$perms);
         $this->info('Permissions: '.$list);
-        
+
         $identField = User::calcUserIdentityField();
         $users = $role->users()->get([$identField])->toArray();
         if(empty($users)) $list = '<none>';

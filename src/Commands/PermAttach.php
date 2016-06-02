@@ -52,6 +52,11 @@ class PermAttach extends BaseCommand
         /** @var Role $role */
         $role = $this->loadRole($role_name);
         if($role == null) return;
+        
+        if($role->hasPermission($perm_name)) {
+            $this->error("The permission '$perm_name' is already attached to the '$role_name' role.");
+            return;
+        }
 
         $role->attachPermission($perm);
         $this->info("Successfully attached the '$perm_name' permission to the '$role_name' role.");

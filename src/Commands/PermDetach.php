@@ -53,6 +53,11 @@ class PermDetach extends BaseCommand
         $role = $this->loadRole($role_name);
         if($role == null) return;
 
+        if(!$role->hasPermission($perm_name)) {
+            $this->error("The permission '$perm_name' is not attached to the '$role_name' role.");
+            return;
+        }
+        
         $role->detachPermission($perm);
         $this->info("Successfully detached the '$perm_name' permission from the '$role_name' role.");
     }

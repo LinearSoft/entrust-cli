@@ -54,10 +54,16 @@ class BaseCommand extends Command
         return $perm;
     }
 
-    protected function loadUser($identity, $field, $failOnSuccess=false)
+    protected function loadUser($identity, $identField = false, $failOnSuccess=false)
     {
         $model = User::getAppModel();
-        $user = $model->query()->where($field,$identity)->first();
+        $user = null;
+        if($identField === false) {
+            $user = $model->query()->where(User::PROPERTY_EMAIL,$identity)->first();
+            if($user == null) $user = $model->query()->where(User::PROPERTY_USERNAME,$identity)->first();
+        } else  {
+            $user = $model->query()->where($identField,$identity)->first();
+        }
         if($user == null) {
             if($failOnSuccess) return null;
             $this->error("The user '$identity' does not exist.");

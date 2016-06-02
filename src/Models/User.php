@@ -32,7 +32,10 @@ class User extends Model
     public static function calcUserIdentityField()
     {
         $model = self::getAppModel();
+        
+
         $table = $model->getTable();
+
         /** @noinspection PhpUndefinedClassInspection */
         if(\Schema::hasColumn($table,self::PROPERTY_USERNAME)) return self::PROPERTY_USERNAME;
         /** @noinspection PhpUndefinedClassInspection */

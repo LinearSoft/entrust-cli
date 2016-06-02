@@ -21,10 +21,8 @@ class RoleAttach extends BaseCommand
      */
     protected $signature = 'entrust-cli:role:attach
                             {role_name : Name of role to attach}
-                            {identity} : Identifying user info (defaults to email)}
-                            {--e|email? : The identity is an email address (default)}
-                            {--u|username? : The identity is a username}
-                            {--o|other=? : Specify a specific identify field}';
+                            {identity} : Identifying user info (email/username)}
+                            {--attr= : Manually set identify attribute}';
 
     /**
      * The console command description.
@@ -56,15 +54,18 @@ class RoleAttach extends BaseCommand
         /** @var Role $role */
         $role = $this->loadRole($role_name);
         if($role == null) return;
-        
+
         $identity = $this->argument('identity');
-        $field = User::PROPERTY_EMAIL;
-        if($this->option('username')) $field = User::PROPERTY_USERNAME;
-        elseif($this->option('other')) $field = $this->option('other');
         /** @var User $user */
-        $user = $this->loadUser($identity,$field);
+        $user = $this->loadUser($identity,$this->option('attr'));
         if($user == null) return;
-        
+
+        if($user->hasRole($role_name)) {
+            $this->error("The role '$role_name' is already attached to the '$identity' user.");
+            return;
+        }
+
+
         $user->attachRole($role);
         $this->info("Successfully attached the '$role_name' role to the '$identity' user.");
     }
