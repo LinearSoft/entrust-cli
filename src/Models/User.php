@@ -26,13 +26,13 @@ class User extends Model
     public static function getAppModel()
     {
         /** @noinspection PhpUndefinedClassInspection */
-        return new ${Config::get('auth.providers.users.model')};
+        return new ${\Config::get('auth.providers.users.model')};
     }
 
     public static function calcUserIdentityField()
     {
         $model = self::getAppModel();
-        
+
 
         $table = $model->getTable();
 
