@@ -31,6 +31,7 @@ class EntrustCliServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerRoleCommands();
+        $this->registerPermCommands();
     }
 
     protected function registerRoleCommands()
