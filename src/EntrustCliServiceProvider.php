@@ -50,6 +50,13 @@ class EntrustCliServiceProvider extends ServiceProvider
         $this->app->singleton('command.entrust-cli.role.perm-add', function() {
             return new Commands\RolesAddPermissionCommand();
         });
+        $this->commands([
+            'command.entrust-cli.role.create',
+            'command.entrust-cli.role.delete',
+            'command.entrust-cli.role.list',
+            'command.entrust-cli.role.info',
+            'command.entrust-cli.role.perm-add',
+        ]);
     }
 
     
