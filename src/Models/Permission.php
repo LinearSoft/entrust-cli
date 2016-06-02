@@ -17,4 +17,6 @@ class Permission extends EntrustPermission
     const PROPERTY_DISPLAY  = 'display_name';
     const PROPERTY_DESC     = 'description';
     const PROPERTY_KEY      = 'id';
+
+    protected $fillable = [self::PROPERTY_NAME,self::PROPERTY_DISPLAY,self::PROPERTY_DESC];
 }

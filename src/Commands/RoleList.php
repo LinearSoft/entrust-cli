@@ -12,14 +12,14 @@ namespace LinearSoft\EntrustCli\Commands;
 use Illuminate\Console\Command;
 use LinearSoft\EntrustCli\Models\Role;
 
-class RolesListCommand extends Command
+class RoleList extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'entrust-cli:roles:list';
+    protected $signature = 'entrust-cli:role:list';
 
     /**
      * The console command description.

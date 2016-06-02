@@ -10,14 +10,14 @@ namespace LinearSoft\EntrustCli\Commands;
 
 use LinearSoft\EntrustCli\Models\Role;
 
-class RolesCreateCommand extends RolesCommand
+class RoleCreate extends BaseCommand
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'entrust-cli:roles:create 
+    protected $signature = 'entrust-cli:role:create 
                             {name : Name of the role} 
                             {display_name? : Display name of the role} 
                             {description? : Description of the role}';

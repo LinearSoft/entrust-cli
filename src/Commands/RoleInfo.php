@@ -8,16 +8,18 @@
 
 namespace LinearSoft\EntrustCli\Commands;
 
+use LinearSoft\EntrustCli\Models\Permission;
 use LinearSoft\EntrustCli\Models\Role;
+use LinearSoft\EntrustCli\Models\User;
 
-class RolesInfoCommand extends RolesCommand
+class RoleInfo extends BaseCommand
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'entrust-cli:roles:info {name}';
+    protected $signature = 'entrust-cli:role:info {name}';
 
     /**
      * The console command description.
@@ -45,14 +47,21 @@ class RolesInfoCommand extends RolesCommand
         /** @var Role $role */
         $role = $this->loadRole($name);
         if($role == null) return;
-        $this->info('Role Info:');
+        
         $this->table(['Name','Display Name','Description','Id'],[[
             $role->{Role::PROPERTY_NAME},$role->{Role::PROPERTY_DISPLAY},$role->{Role::PROPERTY_DESC},$role->{Role::PROPERTY_KEY},
         ]]);
-        $this->info('Role Users:');
-        $users = $role->users()->get()->toArray();
-        $users = implode(', ',$users);
-        $this->info($users);
+        
+        $perms = $role->perms()->get(Permission::PROPERTY_NAME)->toArray();
+        if(empty($perms)) $list = '<none>';
+        else $list = $this->toArrayImplode(', ',Permission::PROPERTY_NAME,$perms);
+        $this->info('Permissions: '.$list);
+        
+        $identField = User::calcUserIdentityField();
+        $users = $role->users()->get([$identField])->toArray();
+        if(empty($users)) $list = '<none>';
+        else $list = $this->toArrayImplode(', ',$identField,$users);
+        $this->info('Members: '.$list);
     }
 
 }

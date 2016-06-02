@@ -11,14 +11,16 @@ namespace LinearSoft\EntrustCli\Commands;
 use LinearSoft\EntrustCli\Models\Permission;
 use LinearSoft\EntrustCli\Models\Role;
 
-class RolesAddPermissionCommand extends RolesCommand
+class PermAttach extends BaseCommand
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'entrust-cli:roles:perm-add {role_name} {perm_name}';
+    protected $signature = 'entrust-cli:permission:attach
+                            {perm_name : Name of permission to attach}
+                            {role_name : Name of role to attach permission to}';
 
     /**
      * The console command description.
@@ -42,16 +44,17 @@ class RolesAddPermissionCommand extends RolesCommand
      */
     public function handle()
     {
-        $role_name = $this->argument('role_name');
         $perm_name = $this->argument('perm_name');
-        /** @var Role $role */
-        $role = $this->loadRole($role_name);
-        if($role == null) return;
+        $role_name = $this->argument('role_name');
         /** @var Permission $perm */
         $perm = $this->loadPerm($perm_name);
         if($perm == null) return;
+        /** @var Role $role */
+        $role = $this->loadRole($role_name);
+        if($role == null) return;
+
         $role->attachPermission($perm);
-        $this->info("Successfully added the '$perm_name' permission to the '$role_name' role.");
+        $this->info("Successfully attached the '$perm_name' permission to the '$role_name' role.");
     }
 
 }

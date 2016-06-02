@@ -19,4 +19,5 @@ class Role extends EntrustRole
     const PROPERTY_DESC     = 'description';
     const PROPERTY_KEY      = 'id';
 
+    protected $fillable = [self::PROPERTY_NAME,self::PROPERTY_DISPLAY,self::PROPERTY_DESC];
 }

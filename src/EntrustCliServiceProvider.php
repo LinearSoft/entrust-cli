@@ -36,28 +36,57 @@ class EntrustCliServiceProvider extends ServiceProvider
     protected function registerRoleCommands()
     {
         $this->app->singleton('command.entrust-cli.role.create', function() {
-            return new Commands\RolesCreateCommand();
+            return new Commands\RoleCreate();
         });
         $this->app->singleton('command.entrust-cli.role.delete', function() {
-            return new Commands\RolesDeleteCommand();
+            return new Commands\RoleDelete();
         });
         $this->app->singleton('command.entrust-cli.role.list', function() {
-            return new Commands\RolesListCommand();
+            return new Commands\RoleList();
         });
         $this->app->singleton('command.entrust-cli.role.info', function() {
-            return new Commands\RolesInfoCommand();
+            return new Commands\RoleInfo();
         });
-        $this->app->singleton('command.entrust-cli.role.perm-add', function() {
-            return new Commands\RolesAddPermissionCommand();
+        $this->app->singleton('command.entrust-cli.role.attach', function() {
+            return new Commands\RoleAttach();
+        });
+        $this->app->singleton('command.entrust-cli.role.detach', function() {
+            return new Commands\RoleDetach();
         });
         $this->commands([
             'command.entrust-cli.role.create',
             'command.entrust-cli.role.delete',
             'command.entrust-cli.role.list',
             'command.entrust-cli.role.info',
-            'command.entrust-cli.role.perm-add',
+            'command.entrust-cli.role.attach',
+            'command.entrust-cli.role.detach',
         ]);
     }
 
+    protected function registerPermCommands()
+    {
+        $this->app->singleton('command.entrust-cli.permission.create', function() {
+            return new Commands\PermCreate();
+        });
+        $this->app->singleton('command.entrust-cli.permission.delete', function() {
+            return new Commands\PermDelete();
+        });
+        $this->app->singleton('command.entrust-cli.permission.list', function() {
+            return new Commands\PermList();
+        });
+        $this->app->singleton('command.entrust-cli.permission.attach', function() {
+            return new Commands\PermAttach();
+        });
+        $this->app->singleton('command.entrust-cli.permission.detach', function() {
+            return new Commands\PermDetach();
+        });
+        $this->commands([
+            'command.entrust-cli.permission.create',
+            'command.entrust-cli.permission.delete',
+            'command.entrust-cli.permission.list',
+            'command.entrust-cli.permission.attach',
+            'command.entrust-cli.permission.detach',
+        ]); 
+    }
     
 }
