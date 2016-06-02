@@ -1,0 +1,29 @@
+{
+  "name": "linearsoft/entrust-cli",
+  "description": "Provides a console interface to Entrust for Laravel",
+  "keywords": ["laravel","illuminate","auth","roles","acl","permission","console","cli"],
+  "homepage": "https://github.com/LinearSoft/entrust-cli",
+  "minimum-stability": "stable",
+  "license": "GPLv3",
+  "authors": [
+    {
+      "name": "Jason Abraham",
+      "email": "jason@linearsoft.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.5.9",
+    "zizaco/entrust": "5.2.x-dev",
+    "illuminate/console": "~5.2",
+    "illuminate/database": "~5.2",
+    "illuminate/support": "~5.2"
+  },
+  "require-dev": {
+
+  },
+  "autoload": {
+    "psr-4": {
+      "LinearSoft\\EntrustCli\\": "src/"
+    }
+  }
+}
