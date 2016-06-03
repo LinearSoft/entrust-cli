@@ -26,16 +26,14 @@ class User extends Model
     public static function getAppModel()
     {
         /** @noinspection PhpUndefinedClassInspection */
-        return new ${\Config::get('auth.providers.users.model')};
+        $className = \Config::get('auth.providers.users.model');
+        return new $className;
     }
 
     public static function calcUserIdentityField()
     {
         $model = self::getAppModel();
-
-
         $table = $model->getTable();
-
         /** @noinspection PhpUndefinedClassInspection */
         if(\Schema::hasColumn($table,self::PROPERTY_USERNAME)) return self::PROPERTY_USERNAME;
         /** @noinspection PhpUndefinedClassInspection */

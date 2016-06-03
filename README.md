@@ -75,8 +75,8 @@ php artisan list
 
 #### User Identity
 
-Entrust-Cli does not know for certain what attribute your application uses to find user records.  By default it will check for an `email` attribute 
-and then fail-over to a `username`.  If your User model does not use either one of these you must specify which attribute to search on:
+Entrust-Cli does not know for certain what attribute your application uses to lookup user records.  By default it will check for an `email` attribute 
+and then fail-over to a `username`.  If your User model does not use either one of these you must manually specify which attribute to search on:
 ```
 entrust-cli:role:attach myrole "John Doe" --attr=name
 entrust-cli:role:attach myrole 8846811346 --attr=barcode
