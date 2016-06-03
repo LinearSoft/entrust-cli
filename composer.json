@@ -1,7 +1,7 @@
 {
   "name": "linearsoft/entrust-cli",
   "description": "Provides a console interface to Entrust for Laravel",
-  "keywords": ["laravel","illuminate","auth","roles","acl","permission","console","cli"],
+  "keywords": ["laravel","entrust","auth","roles","acl","permission","console","cli"],
   "homepage": "https://github.com/LinearSoft/entrust-cli",
   "minimum-stability": "stable",
   "license": "GPLv3",
