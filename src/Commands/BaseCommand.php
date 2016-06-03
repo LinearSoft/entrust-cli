@@ -54,11 +54,11 @@ class BaseCommand extends Command
         return $perm;
     }
 
-    protected function loadUser($identity, $identField = false, $failOnSuccess=false)
+    protected function loadUser($identity, $identField = null, $failOnSuccess=false)
     {
         $model = User::getAppModel();
         $user = null;
-        if($identField === false) {
+        if(empty($identField)) {
             $user = $model->query()->where(User::PROPERTY_EMAIL,$identity)->first();
             if($user == null) $user = $model->query()->where(User::PROPERTY_USERNAME,$identity)->first();
         } else  {
